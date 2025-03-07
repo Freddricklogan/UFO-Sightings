@@ -1,0 +1,42 @@
+body {
+    color: #f7f7f7;
+}
+
+.jumbotron {
+    background-image: url("../images/nasa.jpg");
+    background-size: 100% 100%;
+    text-align: center;
+    color: white;
+    text-shadow: 2px 2px 5px #000;
+}
+
+.filters {
+    padding: 20px;
+    background-color: #343a40;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.footer {
+    position: sticky;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #343a40;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    margin-top: 20px;
+}
+
+.table-responsive {
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+/* Make table headers sticky */
+thead th {
+    position: sticky;
+    top: 0;
+    background-color: #343a40;
+}
