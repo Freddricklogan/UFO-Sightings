@@ -1,6 +1,6 @@
 # UFO Sightings Dashboard
 
-![UFO Dashboard](static/images/ufo_dashboard.png)
+<img src="static/images/ufo_dashboard.png" alt="Portfolio Overview" width="60%">
 
 ## Overview
 An interactive web application that allows users to filter and explore data about UFO sightings based on multiple criteria.
