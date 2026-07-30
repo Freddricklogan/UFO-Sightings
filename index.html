@@ -3,102 +3,105 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UFO Sightings Dashboard</title>
-    <link
-      rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-    />
+    <title>UFO Sightings — Interactive Data Explorer</title>
+    <meta name="description" content="Filter and explore thousands of recorded UFO sightings by date, city, state, country, and shape in an interactive data dashboard built with D3.js.">
+    <meta name="author" content="Freddrick Logan">
+    <meta name="theme-color" content="#0a0a1f">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="UFO Sightings — Interactive Data Explorer">
+    <meta property="og:description" content="Filter and explore recorded UFO sightings across multiple criteria. Built with D3.js.">
+    <meta property="og:url" content="https://freddricklogan.github.io/UFO-Sightings/">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230a0a1f'/%3E%3Cellipse cx='16' cy='17' rx='9' ry='3.2' fill='none' stroke='%237de3ff' stroke-width='1.8'/%3E%3Cpath d='M10 15.5c1.2-2.4 3.4-4 6-4s4.8 1.6 6 4' fill='none' stroke='%237de3ff' stroke-width='1.8'/%3E%3Ccircle cx='16' cy='11' r='1.3' fill='%237de3ff'/%3E%3Cline x1='12' y1='20' x2='11' y2='23' stroke='%237de3ff' stroke-width='1.5'/%3E%3Cline x1='20' y1='20' x2='21' y2='23' stroke='%237de3ff' stroke-width='1.5'/%3E%3C/svg%3E">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="static/css/style.css">
 </head>
-<body class="bg-dark">
+<body>
     <div class="wrapper">
-        <!-- Navigation bar -->
-        <nav class="navbar navbar-dark bg-dark navbar-expand-lg">
-            <a class="navbar-brand" href="index.html">UFO Sightings</a>
+        <nav class="topbar">
+            <div class="topbar__inner">
+                <a class="brand" href="index.html">
+                    <svg viewBox="0 0 32 32" width="30" height="30" aria-hidden="true"><ellipse cx="16" cy="17" rx="9" ry="3.2" fill="none" stroke="#7de3ff" stroke-width="1.8"/><path d="M10 15.5c1.2-2.4 3.4-4 6-4s4.8 1.6 6 4" fill="none" stroke="#7de3ff" stroke-width="1.8"/><circle cx="16" cy="11" r="1.3" fill="#7de3ff"/></svg>
+                    <span>UFO Sightings</span>
+                </a>
+                <span class="topbar__tag">Interactive Data Explorer &middot; D3.js</span>
+            </div>
         </nav>
-        
-        <!-- Page Header -->
-        <div class="jumbotron">
-            <h1 class="display-4">The Truth Is Out There</h1>
-        </div>
-        
-        <!-- Main Content -->
-        <div class="container-fluid">
+
+        <header class="hero">
+            <h1>The Truth Is Out There</h1>
+            <p>Filter and explore thousands of recorded sightings by date, location, and shape.</p>
+        </header>
+
+        <main class="container-fluid content">
             <div class="row">
-                <!-- Article Section -->
-                <div class="col-md-4">
-                    <h3>UFO Sightings: Fact or Fiction?</h3>
-                    <p>
-                        Are we alone in the universe? For millennia, humans have turned to the sky to answer this question. Now, thanks to research generously funded by W. Avy, a UFO-enthusiast and amateur ufologist, we can supplement our sky-searching with data analysis.
-                    </p>
-                    <p>
-                        "The release of this analysis is well-timed: It coincides with the gathering of ufologists in McMenamins Hotel in Oregon for their annual field trip" - they'll be pleased.
-                    </p>
-                    <p>
-                        But what do actual scientists think? Baylor Professor Alan Linneman points out that just because you see something you can't explain doesn't mean it's intelligent life from another planet: "Keep in mind there are billions and billions of stars in the universe, and if just 1% of those have planets that could potentially harbor life, that would be millions of planets."
-                    </p>
+                <div class="col-lg-4">
+                    <section class="card-panel article">
+                        <h3>Fact or Fiction?</h3>
+                        <p>Are we alone in the universe? For millennia, humans have turned to the sky to answer this question. Now, thanks to research generously funded by W. Avy, a UFO enthusiast and amateur ufologist, we can supplement our sky-searching with data analysis.</p>
+                        <p>“The release of this analysis is well-timed: it coincides with the gathering of ufologists in McMenamins Hotel in Oregon for their annual field trip.”</p>
+                        <p>But what do actual scientists think? Baylor Professor Alan Linneman points out that just because you see something you can’t explain doesn’t mean it’s intelligent life from another planet: “There are billions and billions of stars in the universe, and if just 1% have planets that could potentially harbor life, that would be millions of planets.”</p>
+                    </section>
                 </div>
-                
-                <!-- Data Filter and Table Section -->
-                <div class="col-md-8">
-                    <div class="filters">
-                        <form id="filter-form">
-                            <div class="form-group">
-                                <label for="datetime">Enter a Date</label>
-                                <input type="text" placeholder="1/10/2010" id="datetime" class="form-control" />
+
+                <div class="col-lg-8">
+                    <section class="card-panel">
+                        <h4 class="panel-title">Filter Sightings</h4>
+                        <form id="filter-form" class="filters">
+                            <div class="filter-grid">
+                                <div class="form-group">
+                                    <label for="datetime">Date</label>
+                                    <input type="text" placeholder="1/10/2010" id="datetime" class="form-control" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="city">City</label>
+                                    <input type="text" placeholder="roswell" id="city" class="form-control" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="state">State</label>
+                                    <input type="text" placeholder="ca" id="state" class="form-control" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="country">Country</label>
+                                    <input type="text" placeholder="us" id="country" class="form-control" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="shape">Shape</label>
+                                    <input type="text" placeholder="circle" id="shape" class="form-control" />
+                                </div>
                             </div>
-                            
-                            <div class="form-group">
-                                <label for="city">Enter a City</label>
-                                <input type="text" placeholder="roswell" id="city" class="form-control" />
+                            <div class="filter-actions">
+                                <button id="filter-btn" type="button" class="btn btn-accent">Filter Table</button>
+                                <button id="reset-btn" type="button" class="btn btn-ghost">Reset Filters</button>
                             </div>
-                            
-                            <div class="form-group">
-                                <label for="state">Enter a State</label>
-                                <input type="text" placeholder="ca" id="state" class="form-control" />
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="country">Enter a Country</label>
-                                <input type="text" placeholder="us" id="country" class="form-control" />
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="shape">Enter a Shape</label>
-                                <input type="text" placeholder="circle" id="shape" class="form-control" />
-                            </div>
-                            
-                            <button id="filter-btn" type="button" class="btn btn-primary">Filter Table</button>
-                            <button id="reset-btn" type="button" class="btn btn-secondary">Reset Filters</button>
                         </form>
-                    </div>
-                    
-                    <div class="table-responsive">
-                        <table class="table table-striped">
-                            <thead class="thead-dark">
-                                <tr>
-                                    <th>Date</th>
-                                    <th>City</th>
-                                    <th>State</th>
-                                    <th>Country</th>
-                                    <th>Shape</th>
-                                    <th>Duration</th>
-                                    <th>Comments</th>
-                                </tr>
-                            </thead>
-                            <tbody id="ufo-table"></tbody>
-                        </table>
-                    </div>
+                    </section>
+
+                    <section class="card-panel mt-4">
+                        <h4 class="panel-title">Results</h4>
+                        <div class="table-responsive">
+                            <table class="table results-table">
+                                <thead>
+                                    <tr>
+                                        <th>Date</th><th>City</th><th>State</th><th>Country</th>
+                                        <th>Shape</th><th>Duration</th><th>Comments</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="ufo-table"></tbody>
+                            </table>
+                        </div>
+                    </section>
                 </div>
             </div>
-        </div>
-        
-        <!-- Footer -->
-        <footer class="footer">
-            <span class="bottom">UFO Sightings</span>
+        </main>
+
+        <footer class="app-footer">
+            <p>Interactive UFO sightings explorer &middot; data filtering with D3.js.</p>
+            <p>Built by <a href="https://github.com/Freddricklogan">Freddrick Logan</a> &middot;
+               <a href="https://github.com/Freddricklogan/UFO-Sightings">Source</a> &middot;
+               <a href="https://www.linkedin.com/in/freddricklogan/">LinkedIn</a></p>
         </footer>
     </div>
-    
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.11.0/d3.js"></script>
     <script src="static/js/data.js"></script>
     <script src="static/js/app.js"></script>
