@@ -62,6 +62,8 @@ async function boot() {
   });
   render();
   shell = mountExecShell({
+  theme: 'signal',
+  accent: 'secondary',
     title: 'UFO Sightings',
     tagline: 'The filterable-table exercise, kept to its scope: sixteen January 2010 reports, filtered by date range, city, state, country, shape and free text, sorted by any column, exported as CSV. The dataset is vendored and every filter, parser and sort is unit-tested.',
     repo: 'https://github.com/Freddricklogan/UFO-Sightings',
